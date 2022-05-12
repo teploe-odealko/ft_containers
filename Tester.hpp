@@ -15,12 +15,13 @@
 
 
 
-
-class ValuableMethods
+template<class element_type>
+class ContainerMethods
 {
 public:
 	virtual bool empty() = 0;
 	virtual size_t size() = 0;
+	virtual element_type top() = 0;
 
 };
 
@@ -42,20 +43,34 @@ public:
 			valuable_methods.push_back("top");
 			srand(1);
 		}
+		else if (container_name == "vector") {
+//			valuable_methods.push_back("begin");
+//			valuable_methods.push_back("end");
+//			valuable_methods.push_back("rbegin");
+//			valuable_methods.push_back("rend");
+
+			valuable_methods.push_back("size");
+//			valuable_methods.push_back("max_size");
+//			valuable_methods.push_back("capacity");
+			valuable_methods.push_back("empty");
+//			valuable_methods.push_back("front");
+//			valuable_methods.push_back("back");
+			srand(1);
+		}
 	}
 
 	void print_state() {
 		std::cout<< "Container state:" << std::endl;
 		for(std::vector<std::string>::iterator it = valuable_methods.begin(); it != valuable_methods.end(); ++it) {
 			if (*it == "empty") {
-				std::cout << "empty: " << container.empty() << std::endl;
+				std::cout << "empty: " << static_cast<ContainerMethods<element_type> >(container).empty() << std::endl;
 			}
 			else if (*it == "size") {
-				std::cout << "size: " << container.size() << std::endl;
+				std::cout << "size: " << static_cast<ContainerMethods<element_type> >(container).size() << std::endl;
 			}
 			else if (*it == "top") {
 				if (container.size())
-					std::cout << "top: " << container.top() << std::endl;
+					std::cout << "top: " << static_cast<ContainerMethods<element_type> >(container).top() << std::endl;
 				else
 					std::cout << "top: " << "-" << std::endl;
 			}

@@ -23,13 +23,17 @@ public:
 
 int main() {
 
-	NAMESPACE::stack<int> st;
-	Tester< NAMESPACE::stack<int>, int > stack_simple_type_tester("stack", st);
-	stack_simple_type_tester.run_test();
+//	NAMESPACE::stack<int> st;
+//	Tester< NAMESPACE::stack<int>, int > stack_simple_type_tester("stack", st);
+//	stack_simple_type_tester.run_test();
+//
+//	NAMESPACE::stack<Person> per;
+//	Tester< NAMESPACE::stack<Person>, Person > stack_custom_type_tester("stack", per);
+//	stack_custom_type_tester.run_test();
 
-	NAMESPACE::stack<Person> per;
-	Tester< NAMESPACE::stack<Person>, Person > stack_custom_type_tester("stack", per);
-	stack_custom_type_tester.run_test();
+	NAMESPACE::vector<int> simple_vec;
+	Tester< NAMESPACE::vector<int>, int > stack_simple_type_tester("vector", simple_vec);
+	stack_simple_type_tester.run_test();
 
 
 	return (0);
