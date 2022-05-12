@@ -1,2 +1,6 @@
 .idea
 cmake-build-debug
+*.out
+std
+ft
+ft_containers-unit-test/

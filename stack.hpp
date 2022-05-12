@@ -5,7 +5,7 @@
 
 namespace ft {
 	template<class T, class Container = std::vector<T> >
-	class Stack {
+	class stack {
 	public:
 		typedef T value_type;
 		typedef Container container_type;
@@ -15,7 +15,7 @@ namespace ft {
 		container_type container;
 
 	public:
-		explicit Stack(const container_type& container = container_type()) :container(container) { }
+		explicit stack(const container_type& container = container_type()) : container(container) { }
 
 		bool empty() const { return container.empty(); }
 
@@ -30,27 +30,27 @@ namespace ft {
 		void pop() { container.pop_back(); }
 
 
-		friend bool operator==(const Stack<T, Container>& lhs, const Stack<T, Container>& rhs) {
+		friend bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs) {
 			return lhs.container==rhs.container;
 		}
 
-		friend bool operator<(const Stack<T, Container>& lhs, const Stack<T, Container>& rhs) {
+		friend bool operator<(const stack<T, Container>& lhs, const stack<T, Container>& rhs) {
 			return lhs.container<rhs.container;
 		}
 
-		friend bool operator!=(const Stack<T, Container>& lhs, const Stack<T, Container>& rhs) {
+		friend bool operator!=(const stack<T, Container>& lhs, const stack<T, Container>& rhs) {
 			return (lhs.container!=rhs.container);
 		}
 
-		friend bool operator<=(const Stack<T, Container>& lhs, const Stack<T, Container>& rhs) {
+		friend bool operator<=(const stack<T, Container>& lhs, const stack<T, Container>& rhs) {
 			return (lhs.container<=rhs.container);
 		}
 
-		friend bool operator>(const Stack<T, Container>& lhs, const Stack<T, Container>& rhs) {
+		friend bool operator>(const stack<T, Container>& lhs, const stack<T, Container>& rhs) {
 			return lhs.container>rhs.container;
 		}
 
-		friend bool operator>=(const Stack<T, Container>& lhs, const Stack<T, Container>& rhs) {
+		friend bool operator>=(const stack<T, Container>& lhs, const stack<T, Container>& rhs) {
 			return lhs.container>=rhs.container;
 		}
 
@@ -58,7 +58,7 @@ namespace ft {
 
 
 
-//	template<class T, class Container>
+//	template<class container_type, class Container>
 
 
 
