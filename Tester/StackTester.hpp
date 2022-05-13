@@ -11,17 +11,17 @@
 #include "stack"
 #include "map"
 #define COUNT 5
-#define quote(x) #x
-
+#include "vector"
+#include "../vector.hpp"
+#include "stack"
+#include "../stack.hpp"
 
 
 template<class element_type>
-class ContainerMethods
+class ContainerMethods :
+		public ft::stack<element_type>, public std::stack<element_type>,
+		public ft::vector<element_type>, public std::vector<element_type>
 {
-public:
-	virtual bool empty() = 0;
-	virtual size_t size() = 0;
-	virtual element_type top() = 0;
 
 };
 
@@ -59,18 +59,32 @@ public:
 		}
 	}
 
+	bool if_vector() {
+		if (typeid(container_type) == typeid(ft::vector<element_type>)
+		|| typeid(container_type) == typeid(std::vector<element_type>))
+			return true;
+		return false;
+	}
+
+	bool if_stack() {
+		if (typeid(container_type) == typeid(ft::stack<element_type>)
+		|| typeid(container_type) == typeid(std::stack<element_type>))
+			return true;
+		return false;
+	}
+
 	void print_state() {
 		std::cout<< "Container state:" << std::endl;
 		for(std::vector<std::string>::iterator it = valuable_methods.begin(); it != valuable_methods.end(); ++it) {
-			if (*it == "empty") {
-				std::cout << "empty: " << static_cast<ContainerMethods<element_type> >(container).empty() << std::endl;
+			if (*it == "empty" && (if_stack() || if_vector())) {
+				std::cout << "empty: " << (container).empty() << std::endl;
 			}
-			else if (*it == "size") {
-				std::cout << "size: " << static_cast<ContainerMethods<element_type> >(container).size() << std::endl;
+			else if (*it == "size" && (if_stack() || if_vector())) {
+				std::cout << "size: " << (container).size() << std::endl;
 			}
-			else if (*it == "top") {
+			else if ( *it == "top" && if_stack()) {
 				if (container.size())
-					std::cout << "top: " << static_cast<ContainerMethods<element_type> >(container).top() << std::endl;
+					std::cout << "top: " << (dynamic_cast<ContainerMethods<element_type> >(container)).top() << std::endl;
 				else
 					std::cout << "top: " << "-" << std::endl;
 			}
@@ -98,16 +112,24 @@ public:
 		}
 	}
 
+	void run_test() {
+		if (if_vector())
+			test_vector();
+		else if (typeid(container_type) != typeid(std::vector<element_type>) && if_stack())
+			test_stack();
+	}
+
 	void test_stack() {
 		print_state();
 		test_push();
 		test_pop();
 	}
 
-	void run_test() {
-		if (container_name == "stack")
-			test_stack();
+	void test_vector() {
+
 	}
+
+
 
 //	Tester(const Tester &tester);
 //
