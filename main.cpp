@@ -1,7 +1,9 @@
-#include "Tester.hpp"
+#include "Tester/Tester.hpp"
 #include "vector"
 #include "stack"
 #include "stack.hpp"
+#include "Tester/StackTester.hpp"
+#include "Tester/VectorTester.hpp"
 
 //ft::stack<int> st;
 //Tester< ft::vector<int>, int > tester("vector", st);
@@ -22,18 +24,22 @@ public:
 };
 
 int main() {
-
+	std::vector<int>::iterator  it;
+//	std::iterator_traits< typeof(it)>::
 //	NAMESPACE::stack<int> st;
-//	Tester< NAMESPACE::stack<int>, int > stack_simple_type_tester("stack", st);
-//	stack_simple_type_tester.run_test();
+//	StackTester< NAMESPACE::stack<int>, int > simple_type_stack_tester(st);
+//	simple_type_stack_tester.run_test();
 //
 //	NAMESPACE::stack<Person> per;
-//	Tester< NAMESPACE::stack<Person>, Person > stack_custom_type_tester("stack", per);
-//	stack_custom_type_tester.run_test();
+//	StackTester< NAMESPACE::stack<Person>, Person > custom_type_stack_tester(per);
+//	custom_type_stack_tester.run_test();
 
 	NAMESPACE::vector<int> simple_vec;
-	Tester< NAMESPACE::vector<int>, int > stack_simple_type_tester("vector", simple_vec);
-	stack_simple_type_tester.run_test();
+	VectorTester< NAMESPACE::vector<int>, int > simple_type_vec_tester(simple_vec);
+	simple_type_vec_tester.run_test();
+
+	std::vector<int> a;
+	std::vector<int> b;
 
 
 	return (0);
