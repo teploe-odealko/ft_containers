@@ -81,13 +81,32 @@ public:
 		print_state();
 	}
 
+
 	void test_insert(){
-		this->container.insert(this->container.begin(), this->create_random_element());
+		this->container.insert(this->container.begin(), 4, this->create_random_element());
 		print_state();
 
-		this->container.insert(this->container.begin(), 3, this->create_random_element());
+		this->container.insert(this->container.begin() + 2, 6, this->create_random_element());
 		print_state();
 	}
+
+    void test_comp_operators(){
+        container_type container_same(this->container);
+        container_type container_smaller;
+        std::cout << "COMPARISON OPERATORS" << std::endl;
+        std::cout << "a == a: " << (this->container == container_same) << std::endl;
+        std::cout << "a != a: " << (this->container != container_same) << std::endl;
+        std::cout << "a < a: " << (this->container < container_smaller) << std::endl;
+        std::cout << "a > a: " << (this->container > container_smaller) << std::endl;
+        std::cout << "a <= a: " << (this->container <= container_smaller) << std::endl;
+        std::cout << "a >= a: " << (this->container >= container_smaller) << std::endl;
+        std::cout << std::endl;
+
+    }
+
+    void test_destructor(){
+        this->container.~vector();
+    }
 
 	void run_test() {
 		print_state();
@@ -96,6 +115,10 @@ public:
 		this->test_clear();
 		this->test_reserve();
 		this->test_insert();
+
+        this->test_comp_operators();
+        this->test_destructor();
+
 	};
 
 

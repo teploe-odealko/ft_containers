@@ -3,8 +3,6 @@
 #include "../iterator_traits.hpp"
 
 namespace ft {
-
-
 	template<class IteratorType>
 	class vector_iterator {
 	public:
@@ -14,15 +12,16 @@ namespace ft {
 		typedef typename ft::iterator_traits<iterator_type>::difference_type difference_type;
 		typedef typename ft::iterator_traits<iterator_type>::pointer pointer;
 		typedef typename ft::iterator_traits<iterator_type>::reference reference;
-	private:
+    protected:
 		pointer _ptr;
 	public:
 
 		vector_iterator() : _ptr(NULL) {};
 
-		vector_iterator(pointer ptr) : _ptr(ptr) {};
+		vector_iterator(pointer ptr = 0) : _ptr(ptr) {};
 
-		vector_iterator(vector_iterator<iterator_type> &it) : _ptr(it.base()) {};
+        template<class I>
+		vector_iterator(vector_iterator<I> &it) : _ptr(it.base()) {};
 
 		virtual ~vector_iterator() {}
 
@@ -51,7 +50,7 @@ namespace ft {
 		bool operator!=(const vector_iterator<iterator_type> &it) const { return _ptr != it.base(); }
 
 		vector_iterator &operator--() {
-			_ptr++;
+			_ptr--;
 			return *this;
 		}
 
@@ -68,6 +67,9 @@ namespace ft {
 		friend vector_iterator<iterator_type> operator+(size_t n, const vector_iterator<iterator_type> &iter) {
 			return iter + n;
 		}
+
+        template <typename T>
+        ptrdiff_t operator-(const vector_iterator<T>& it) { return this->base() - it.base(); }
 
 		vector_iterator operator-(difference_type n) const {
 			return _ptr - n;
