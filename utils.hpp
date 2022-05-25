@@ -78,17 +78,57 @@ namespace ft {
         T c(a); a=b; b=c;
     }
 
-	template <class RandIter>
-	typename ft::iterator_traits<RandIter>::difference_type
-	distance(RandIter first, RandIter last)
-	{
-		return last - first;
-	}
 
-//    template <class InputIter>
-//    typename ft::iterator_traits<InputIter>::difference_type
-//    distance(InputIter first, InputIter last)
-//    {
-//        return distance(first, last, typename ft::iterator_traits<InputIter>::iterator_category());
-//    }
+    template <class InputIter>
+    typename std::iterator_traits<InputIter>::difference_type
+    distance(InputIter first, InputIter last, std::input_iterator_tag)
+    {
+        typename std::iterator_traits<InputIter>::difference_type r(0);
+        for (; first != last; ++first)
+            ++r;
+        return r;
+    }
+
+    template <class RandIter>
+    typename std::iterator_traits<RandIter>::difference_type
+    distance(RandIter first, RandIter last, std::random_access_iterator_tag)
+    {
+        return last - first;
+    }
+
+    template <class InputIter>
+    typename ft::iterator_traits<InputIter>::difference_type
+    distance(InputIter first, InputIter last, ft::input_iterator_tag)
+    {
+        typename ft::iterator_traits<InputIter>::difference_type r(0);
+        for (; first != last; ++first)
+            ++r;
+        return r;
+    }
+
+    template <class RandIter>
+    typename ft::iterator_traits<RandIter>::difference_type
+    distance(RandIter first, RandIter last, ft::random_access_iterator_tag)
+    {
+        return last - first;
+    }
+
+    template <class InputIter>
+    typename ft::iterator_traits<InputIter>::difference_type
+    distance(InputIter first, InputIter last)
+    {
+        return distance(first, last, typename ft::iterator_traits<InputIter>::iterator_category());
+    }
+
 }
+
+//namespace std {
+//    template <class T, class A>
+//    void swap(ft::vector<T, A>& v1, ft::vector<T, A>& v2 ) { v1.swap(v2); }
+//
+//    template <class Key, class T, class Compare, class A>
+//    void swap(ft::map<Key, T, Compare, A>& m1, ft::map<Key, T, Compare, A>& m2 ) { m1.swap(m2); }
+//
+//    template<class Key, class Compare, class A>
+//    void swap(ft::set<Key, Compare, A>& s1, ft::set<Key, Compare, A>& s2) { s1.swap(s2); }
+//}

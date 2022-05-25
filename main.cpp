@@ -4,7 +4,9 @@
 #include "stack.hpp"
 #include "Tester/StackTester.hpp"
 #include "Tester/VectorTester.hpp"
-
+#include "Tester/MapTester.hpp"
+#include "utils.hpp"
+#include "pair.hpp"
 //ft::stack<int> st;
 //Tester< ft::vector<int>, int > tester("vector", st);
 #ifdef FT
@@ -34,13 +36,15 @@ int main() {
 //	StackTester< NAMESPACE::stack<Person>, Person > custom_type_stack_tester(per);
 //	custom_type_stack_tester.run_test();
 
-	NAMESPACE::vector<int> simple_vec;
-	VectorTester< NAMESPACE::vector<int>, int > simple_type_vec_tester(simple_vec);
-	simple_type_vec_tester.run_test();
+//	NAMESPACE::vector<int> simple_vec;
+//	VectorTester< NAMESPACE::vector<int>, int > simple_type_vec_tester(simple_vec);
+//	simple_type_vec_tester.run_test();
 
-	std::vector<int> a;
-	std::vector<int> b;
+    NAMESPACE::vector<int> simple_map;
+    MapTester< NAMESPACE::vector<int>, int > simple_type_map_tester(simple_map);
+    simple_type_map_tester.run_test();
 
+    ft::make_pair(1, 2);
 
 	return (0);
 }

@@ -32,19 +32,6 @@ public:
 	Tester(container_type container):  container(container) {
 
 	}
-//	bool if_vector() {
-//		if (typeid(container_type) == typeid(ft::vector<element_type>)
-//		|| typeid(container_type) == typeid(std::vector<element_type>))
-//			return true;
-//		return false;
-//	}
-//
-//	bool if_stack() {
-//		if (typeid(container_type) == typeid(ft::stack<element_type>)
-//		|| typeid(container_type) == typeid(std::stack<element_type>))
-//			return true;
-//		return false;
-//	}
 
 
 	element_type create_random_element() {

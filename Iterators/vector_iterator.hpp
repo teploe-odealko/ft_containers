@@ -16,23 +16,22 @@ namespace ft {
 		pointer _ptr;
 	public:
 
-		vector_iterator() : _ptr(NULL) {};
-
 		vector_iterator(pointer ptr = 0) : _ptr(ptr) {};
 
         template<class I>
-		vector_iterator(vector_iterator<I> &it) : _ptr(it.base()) {};
+		vector_iterator(const vector_iterator<I> &it) : _ptr(it.base()) {};
 
 		virtual ~vector_iterator() {}
 
-		pointer base() const { return _ptr; }
+        pointer base() const { return _ptr; }
 
-		vector_iterator &operator=(const vector_iterator &it) {
-			if (this != &it) {
-				_ptr = it.base();
-			}
-			return *this;
-		}
+        vector_iterator& operator=(const vector_iterator& other)
+        {
+            if (this == &other)
+                return *this;
+            _ptr = other._ptr;
+            return *this;
+        }
 
 		vector_iterator &operator++() {
 			_ptr++;
@@ -45,9 +44,11 @@ namespace ft {
 			return prev;
 		}
 
-		bool operator==(const vector_iterator<iterator_type> &it) const { return _ptr == it.base(); }
+        template<class I>
+		bool operator==(const vector_iterator<I> &it) const { return _ptr == it.base(); }
 
-		bool operator!=(const vector_iterator<iterator_type> &it) const { return _ptr != it.base(); }
+        template<class I>
+		bool operator!=(const vector_iterator<I> &it) const { return _ptr != it.base(); }
 
 		vector_iterator &operator--() {
 			_ptr--;
@@ -64,28 +65,39 @@ namespace ft {
 			return _ptr + n;
 		}
 
-		friend vector_iterator<iterator_type> operator+(size_t n, const vector_iterator<iterator_type> &iter) {
-			return iter + n;
-		}
+//        template<class I>
+//		friend vector_iterator<I> operator+(size_t n, const vector_iterator<I> &iter) {
+//			return iter + n;
+//		}
+
+//        template <typename T>
+//        ptrdiff_t operator-(const vector_iterator<T>& it) { return this->base() - it.base(); }
+//
+//		vector_iterator operator-(difference_type n) const {
+//			return _ptr - n;
+//		}
+
+//		friend vector_iterator<iterator_type> operator-(size_t n, const vector_iterator<iterator_type> &iter) {
+//			return iter - n;
+//		}
+        vector_iterator operator-(difference_type n) const { return _ptr - n; }
 
         template <typename T>
         ptrdiff_t operator-(const vector_iterator<T>& it) { return this->base() - it.base(); }
 
-		vector_iterator operator-(difference_type n) const {
-			return _ptr - n;
-		}
+        pointer operator->() { return _ptr; }
 
-		friend vector_iterator<iterator_type> operator-(size_t n, const vector_iterator<iterator_type> &iter) {
-			return iter - n;
-		}
+        template<class I>
+		bool operator>(const vector_iterator<I> &it) const { return _ptr > it.base(); }
 
-		bool operator>(const vector_iterator<iterator_type> &it) const { return _ptr > it.base(); }
+        template<class I>
+		bool operator<(const vector_iterator<I> &it) const { return _ptr < it.base(); }
 
-		bool operator<(const vector_iterator<iterator_type> &it) const { return _ptr < it.base(); }
+        template<class I>
+		bool operator>=(const vector_iterator<I> &it) const { return _ptr >= it.base(); }
 
-		bool operator>=(const vector_iterator<iterator_type> &it) const { return _ptr >= it.base(); }
-
-		bool operator<=(const vector_iterator<iterator_type> &it) const { return _ptr <= it.base(); }
+        template<class I>
+		bool operator<=(const vector_iterator<I> &it) const { return _ptr <= it.base(); }
 
 		vector_iterator operator+=(difference_type n) {
 			_ptr += n;
@@ -102,4 +114,10 @@ namespace ft {
 		reference operator[](difference_type n) const { return _ptr[n]; }
 
 	};
+
+    template <typename T>
+    vector_iterator<T> operator+(size_t n, const vector_iterator<T> &iter) { return iter + n; }
+
+    template <typename T>
+    ptrdiff_t operator-(const vector_iterator<T>& lhi, const vector_iterator<T>& rhi) { return lhi.base() - rhi.base(); }
 }
