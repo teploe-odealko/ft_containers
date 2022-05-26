@@ -7,6 +7,7 @@
 #include "Tester/MapTester.hpp"
 #include "utils.hpp"
 #include "pair.hpp"
+#include "map.hpp"
 //ft::stack<int> st;
 //Tester< ft::vector<int>, int > tester("vector", st);
 #ifdef FT
@@ -27,6 +28,8 @@ public:
 
 int main() {
 	std::vector<int>::iterator  it;
+
+//	std::map<> a;
 //	std::iterator_traits< typeof(it)>::
 //	NAMESPACE::stack<int> st;
 //	StackTester< NAMESPACE::stack<int>, int > simple_type_stack_tester(st);
@@ -40,11 +43,12 @@ int main() {
 //	VectorTester< NAMESPACE::vector<int>, int > simple_type_vec_tester(simple_vec);
 //	simple_type_vec_tester.run_test();
 
-    NAMESPACE::vector<int> simple_map;
-    MapTester< NAMESPACE::vector<int>, int > simple_type_map_tester(simple_map);
+//
+    NAMESPACE::map<int, int> simple_map;
+    MapTester< NAMESPACE::map<int, int>, NAMESPACE::pair<int, int> > simple_type_map_tester(simple_map);
     simple_type_map_tester.run_test();
 
-    ft::make_pair(1, 2);
+//    ft::make_pair(1, 2);
 
 	return (0);
 }

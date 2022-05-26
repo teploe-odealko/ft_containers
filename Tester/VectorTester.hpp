@@ -121,7 +121,7 @@ public:
     }
 
 	void test_clear(){
-		this->container.clear();
+		this->container._clear();
 		print_state();
 	}
 
