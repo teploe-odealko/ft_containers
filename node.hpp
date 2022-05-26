@@ -21,7 +21,7 @@ namespace ft {
         node* parent;
 
         node(T1 key, T2 value, node* nil = NULL, node_type type = black_node)
-                : type(type), parent(nil), left(nil), right(nil), data(new value_type(key, value)) { }
+                :   right(nil), left(nil), data(new value_type(key, value)), type(type), parent(nil) { }
 
         node(const node& other) { *this = other; }
 

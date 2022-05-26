@@ -27,28 +27,23 @@ public:
 };
 
 int main() {
-	std::vector<int>::iterator  it;
 
-//	std::map<> a;
-//	std::iterator_traits< typeof(it)>::
-//	NAMESPACE::stack<int> st;
-//	StackTester< NAMESPACE::stack<int>, int > simple_type_stack_tester(st);
-//	simple_type_stack_tester.run_test();
-//
-//	NAMESPACE::stack<Person> per;
-//	StackTester< NAMESPACE::stack<Person>, Person > custom_type_stack_tester(per);
-//	custom_type_stack_tester.run_test();
+	NAMESPACE::stack<int> st;
+	StackTester< NAMESPACE::stack<int>, int > simple_type_stack_tester(st);
+	simple_type_stack_tester.run_test();
 
-//	NAMESPACE::vector<int> simple_vec;
-//	VectorTester< NAMESPACE::vector<int>, int > simple_type_vec_tester(simple_vec);
-//	simple_type_vec_tester.run_test();
+	NAMESPACE::stack<Person> per;
+	StackTester< NAMESPACE::stack<Person>, Person > custom_type_stack_tester(per);
+	custom_type_stack_tester.run_test();
 
-//
+	NAMESPACE::vector<int> simple_vec;
+	VectorTester< NAMESPACE::vector<int>, int > simple_type_vec_tester(simple_vec);
+	simple_type_vec_tester.run_test();
+
+
     NAMESPACE::map<int, int> simple_map;
     MapTester< NAMESPACE::map<int, int>, NAMESPACE::pair<int, int> > simple_type_map_tester(simple_map);
     simple_type_map_tester.run_test();
-
-//    ft::make_pair(1, 2);
 
 	return (0);
 }
